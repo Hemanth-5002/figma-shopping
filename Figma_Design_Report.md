@@ -4,7 +4,7 @@
 
 The interactive prototype is hosted and can be viewed on any device (phone/tablet/PC) via the link below:
 
-**[View Live Prototype ↗](https://hemanth-shopping-v3.surge.sh)**
+**[View Live Prototype ↗](https://hemanth-5002.github.io/figma-shopping/)**
 
 ---
 
