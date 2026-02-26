@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Figma Basics - TrendVault eCommerce</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+
+<body>
+  <div id="app">
+    <!-- Screen 1: Home / Shop (Frame 1) -->
+    <div id="home-screen" class="screen">
+      <header class="shop-header">
+        <div class="top-bar">
+          <span class="logo">Trend<span>Vault</span></span>
+          <div class="header-actions">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <div class="cart-icon" id="cart-nav-btn">
+              <i class="fa-solid fa-bag-shopping"></i>
+              <span class="cart-count">0</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-banner">
+          <div class="hero-content">
+            <h2>New Collection</h2>
+            <p>Explore the minimalist winter drop.</p>
+            <button class="btn btn-dark">Shop Now</button>
+          </div>
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&h=300&fit=crop" alt="Hero">
+        </div>
+        <div class="categories">
+          <button class="cat-pill active">All</button>
+          <button class="cat-pill">Apparel</button>
+          <button class="cat-pill">Shoes</button>
+          <button class="cat-pill">Bags</button>
+        </div>
+      </header>
+
+      <main class="product-grid" id="product-grid">
+        <!-- Products will be injected here -->
+      </main>
+
+      <nav class="bottom-nav">
+        <div class="nav-item active"><i class="fa-solid fa-house"></i></div>
+        <div class="nav-item"><i class="fa-solid fa-heart"></i></div>
+        <div class="nav-item"><i class="fa-solid fa-compass"></i></div>
+        <div class="nav-item"><i class="fa-solid fa-user"></i></div>
+      </nav>
+    </div>
+
+    <!-- Screen 2: Product Detail (Frame 2) -->
+    <div id="detail-screen" class="screen screen-hidden">
+      <div class="detail-header-float">
+        <i class="fa-solid fa-chevron-left back-btn" id="back-btn"></i>
+        <i class="fa-regular fa-heart"></i>
+      </div>
+
+      <div class="product-image-container">
+        <img src="" id="detail-img" class="full-product-img">
+      </div>
+
+      <div class="product-info-panel">
+        <div class="info-header">
+          <div>
+            <h1 id="detail-title">Premium Product</h1>
+            <p class="brand">Vault Signature</p>
+          </div>
+          <span class="price" id="detail-price">$120</span>
+        </div>
+
+        <div class="description">
+          <h3>Description</h3>
+          <p>Crafted from premium sustainable materials, this piece defines modern minimalist aesthetics. Designed for
+            both comfort and style.</p>
+        </div>
+
+        <div class="options">
+          <div class="size-selector">
+            <span>S</span>
+            <span class="active">M</span>
+            <span>L</span>
+            <span>XL</span>
+          </div>
+        </div>
+
+        <div class="detail-actions">
+          <button class="btn btn-primary btn-large" id="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 3: Cart Overlay / Success (Frame 3) -->
+    <div id="cart-screen" class="screen screen-hidden">
+      <div class="cart-header">
+        <i class="fa-solid fa-xmark close-cart" id="close-cart"></i>
+        <h3>My Cart</h3>
+      </div>
+      <div class="cart-items" id="cart-items-list">
+        <!-- Cart items items here -->
+        <div class="empty-msg">Your cart is empty</div>
+      </div>
+      <div class="cart-footer">
+        <div class="total">
+          <span>Total</span>
+          <span id="cart-total">$0.00</span>
+        </div>
+        <button class="btn btn-primary btn-large" id="checkout-confirm-btn">Checkout Now</button>
+      </div>
+    </div>
+
+    <!-- Screen 4: Success Message (Frame 4) -->
+    <div id="success-screen" class="screen screen-hidden">
+      <div class="success-content">
+        <div class="check-icon">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h1>Order Placed!</h1>
+        <p>Your minimalist look is on its way.</p>
+        <button class="btn btn-primary btn-large" id="return-home-btn">Continue Shopping</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
