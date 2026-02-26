@@ -1,19 +1,5 @@
-// Elements
-const productGrid = document.getElementById('product-grid') as HTMLElement;
-const detailScreen = document.getElementById('detail-screen') as HTMLElement;
-const cartScreen = document.getElementById('cart-screen') as HTMLElement;
-const successScreen = document.getElementById('success-screen') as HTMLElement;
-const backBtn = document.getElementById('back-btn') as HTMLElement;
-const cartNavBtn = document.getElementById('cart-nav-btn') as HTMLElement;
-const closeCartBtn = document.getElementById('close-cart') as HTMLElement;
-const addToCartBtn = document.getElementById('add-to-cart-btn') as HTMLElement;
-const checkoutConfirmBtn = document.getElementById('checkout-confirm-btn') as HTMLElement;
-const returnHomeBtn = document.getElementById('return-home-btn') as HTMLElement;
-
-const detailImg = document.getElementById('detail-img') as HTMLImageElement;
-const detailTitle = document.getElementById('detail-title') as HTMLElement;
-const detailPrice = document.getElementById('detail-price') as HTMLElement;
-const cartCountLabel = document.querySelector('.cart-count') as HTMLElement;
+// Elements - Using a safer selector method
+const getEl = (id: string) => document.getElementById(id);
 
 // Data
 const products = [
@@ -27,8 +13,15 @@ const products = [
 
 let cartCount = 0;
 
-// Render Products
+// Initialize Shop when DOM is ready
 function initShop() {
+  const productGrid = getEl('product-grid');
+
+  if (!productGrid) {
+    console.error('Product grid not found!');
+    return;
+  }
+
   productGrid.innerHTML = '';
   products.forEach(product => {
     const card = document.createElement('div');
@@ -44,54 +37,77 @@ function initShop() {
       </div>
     `;
 
-    // Prototyping: On Click Product -> Scale & Navigate to PDP
     card.onclick = () => {
-      detailImg.src = product.img;
-      detailTitle.innerText = product.name;
-      detailPrice.innerText = `$${product.price}`;
+      const detailImg = getEl('detail-img') as HTMLImageElement;
+      const detailTitle = getEl('detail-title');
+      const detailPrice = getEl('detail-price');
+
+      if (detailImg) detailImg.src = product.img;
+      if (detailTitle) detailTitle.innerText = product.name;
+      if (detailPrice) detailPrice.innerText = `$${product.price}`;
       navigateTo('detail');
     };
 
     productGrid.appendChild(card);
   });
+
+  console.log('Shop initialized with', products.length, 'products');
 }
 
 // Navigation Logic (Figma "Navigate to" simulation)
 function navigateTo(screen: 'home' | 'detail' | 'cart' | 'success') {
+  const detailScreen = getEl('detail-screen');
+  const cartScreen = getEl('cart-screen');
+  const successScreen = getEl('success-screen');
+
   if (screen === 'detail') {
-    detailScreen.classList.remove('screen-hidden');
+    if (detailScreen) detailScreen.classList.remove('screen-hidden');
   } else if (screen === 'home') {
-    detailScreen.classList.add('screen-hidden');
-    cartScreen.classList.add('screen-hidden');
-    successScreen.classList.add('screen-hidden');
+    if (detailScreen) detailScreen.classList.add('screen-hidden');
+    if (cartScreen) cartScreen.classList.add('screen-hidden');
+    if (successScreen) successScreen.classList.add('screen-hidden');
   } else if (screen === 'cart') {
-    cartScreen.classList.remove('screen-hidden');
+    if (cartScreen) cartScreen.classList.remove('screen-hidden');
   } else if (screen === 'success') {
-    successScreen.classList.remove('screen-hidden');
+    if (successScreen) successScreen.classList.remove('screen-hidden');
   }
 }
 
 // Event Listeners
-backBtn.onclick = () => navigateTo('home');
-cartNavBtn.onclick = () => navigateTo('cart');
-closeCartBtn.onclick = () => navigateTo('home');
-checkoutConfirmBtn.onclick = () => navigateTo('success');
-returnHomeBtn.onclick = () => navigateTo('home');
+document.addEventListener('DOMContentLoaded', () => {
+  initShop();
 
-addToCartBtn.onclick = () => {
-  cartCount++;
-  cartCountLabel.innerText = cartCount.toString();
+  const backBtn = getEl('back-btn');
+  const cartNavBtn = getEl('cart-nav-btn');
+  const closeCartBtn = getEl('close-cart');
+  const checkoutConfirmBtn = getEl('checkout-confirm-btn');
+  const returnHomeBtn = getEl('return-home-btn');
+  const addToCartBtn = getEl('add-to-cart-btn');
+  const cartCountLabel = document.querySelector('.cart-count') as HTMLElement;
 
-  // Feedback Animation
-  addToCartBtn.innerText = 'Added!';
-  addToCartBtn.style.background = '#27ae60';
+  if (backBtn) backBtn.onclick = () => navigateTo('home');
+  if (cartNavBtn) cartNavBtn.onclick = () => navigateTo('cart');
+  if (closeCartBtn) closeCartBtn.onclick = () => navigateTo('home');
+  if (checkoutConfirmBtn) checkoutConfirmBtn.onclick = () => navigateTo('success');
+  if (returnHomeBtn) returnHomeBtn.onclick = () => navigateTo('home');
 
-  setTimeout(() => {
-    addToCartBtn.innerText = 'Add to Cart';
-    addToCartBtn.style.background = 'black';
-    navigateTo('home'); // Prototype: After adding, take user back to home
-  }, 1000);
-};
+  if (addToCartBtn) {
+    addToCartBtn.onclick = () => {
+      cartCount++;
+      if (cartCountLabel) cartCountLabel.innerText = cartCount.toString();
 
-// Initialize
-initShop();
+      // Feedback Animation
+      const originalText = addToCartBtn.innerText;
+      addToCartBtn.innerText = 'Added!';
+      (addToCartBtn as HTMLElement).style.background = '#27ae60';
+
+      setTimeout(() => {
+        addToCartBtn.innerText = originalText;
+        (addToCartBtn as HTMLElement).style.background = 'black';
+        navigateTo('home');
+      }, 1000);
+    };
+  }
+});
+
+// Initialize - Not needed here since it's in DOMContentLoaded now
