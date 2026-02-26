@@ -19,7 +19,8 @@
 }
 
 body {
-  background-color: #e0e0e0;
+  background-color: #f0f2f5;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,14 +28,22 @@ body {
 }
 
 #app {
-  width: 390px;
-  height: 844px;
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
   background-color: var(--bg-color);
   position: relative;
   overflow: hidden;
-  border-radius: 40px;
-  box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.25);
-  border: 8px solid #1a1a1a;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  #app {
+    max-width: 100%;
+    /* Or keep it centered if preferred */
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .screen {
@@ -193,10 +202,11 @@ body {
 /* Product Grid */
 .product-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 16px;
   padding: 0 24px 100px;
   overflow-y: auto;
+  width: 100%;
 }
 
 .product-card {
