@@ -15,21 +15,25 @@ let cartCount = 0;
 
 // Initialize Shop when DOM is ready
 function initShop() {
+  console.log('initShop called...');
   const productGrid = getEl('product-grid');
 
   if (!productGrid) {
-    console.error('Product grid not found!');
+    console.error('Product grid element #product-grid NOT FOUND!');
     return;
   }
 
+  console.log('Clearing grid and rendering products...');
   productGrid.innerHTML = '';
   products.forEach(product => {
     const card = document.createElement('div');
     card.className = 'product-card';
+    card.style.opacity = '1';
+    card.style.display = 'block';
     card.innerHTML = `
       <div class="img-wrapper">
         ${(product as any).trending ? '<span class="badge">Trending</span>' : ''}
-        <img src="${product.img}" alt="${product.name}">
+        <img src="${product.img}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/400?text=No+Image'">
       </div>
       <div class="product-info">
         <h3>${product.name}</h3>
@@ -38,6 +42,7 @@ function initShop() {
     `;
 
     card.onclick = () => {
+      console.log('Product clicked:', product.name);
       const detailImg = getEl('detail-img') as HTMLImageElement;
       const detailTitle = getEl('detail-title');
       const detailPrice = getEl('detail-price');
@@ -51,7 +56,7 @@ function initShop() {
     productGrid.appendChild(card);
   });
 
-  console.log('Shop initialized with', products.length, 'products');
+  console.log('Successfully injected', products.length, 'cards into #product-grid');
 }
 
 // Navigation Logic (Figma "Navigate to" simulation)
@@ -75,6 +80,7 @@ function navigateTo(screen: 'home' | 'detail' | 'cart' | 'success') {
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM Content Loaded event fired');
   initShop();
 
   const backBtn = getEl('back-btn');
@@ -109,5 +115,16 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 });
+
+// Fallback: If DOMContentLoaded already fired or missed
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  console.log('Document already ready, triggering manual init');
+  initShop();
+} else {
+  console.log('Wait for document ready...');
+}
+
+// Global reveal to debug
+(window as any).debugInit = initShop;
 
 // Initialize - Not needed here since it's in DOMContentLoaded now
