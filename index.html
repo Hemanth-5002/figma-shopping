@@ -15,9 +15,8 @@
 </head>
 
 <body>
-  <!-- DEPLOY_VER: 2.1 -->
   <div id="app">
-    <!-- Screen 1: Home / Shop (Frame 1) -->
+    <!-- Screen 1: Home / Shop -->
     <div id="home-screen" class="screen">
       <header class="shop-header">
         <div class="top-bar">
@@ -39,10 +38,10 @@
           <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&h=300&fit=crop" alt="Hero">
         </div>
         <div class="categories">
-          <button class="cat-pill active">All</button>
-          <button class="cat-pill">Apparel</button>
-          <button class="cat-pill">Shoes</button>
-          <button class="cat-pill">Bags</button>
+          <button class="cat-pill active" data-cat="All">All</button>
+          <button class="cat-pill" data-cat="Apparel">Apparel</button>
+          <button class="cat-pill" data-cat="Shoes">Shoes</button>
+          <button class="cat-pill" data-cat="Bags">Bags</button>
         </div>
       </header>
 
@@ -51,14 +50,17 @@
       </main>
 
       <nav class="bottom-nav">
-        <div class="nav-item active"><i class="fa-solid fa-house"></i></div>
-        <div class="nav-item"><i class="fa-solid fa-heart"></i></div>
-        <div class="nav-item"><i class="fa-solid fa-compass"></i></div>
-        <div class="nav-item"><i class="fa-solid fa-user"></i></div>
+        <div class="nav-item active" data-nav="home"><i class="fa-solid fa-house"></i></div>
+        <div class="nav-item" data-nav="favorites">
+          <i class="fa-solid fa-heart"></i>
+          <span class="fav-count" style="display:none;">0</span>
+        </div>
+        <div class="nav-item" data-nav="explore"><i class="fa-solid fa-compass"></i></div>
+        <div class="nav-item" data-nav="profile"><i class="fa-solid fa-user"></i></div>
       </nav>
     </div>
 
-    <!-- Screen 2: Product Detail (Frame 2) -->
+    <!-- Screen 2: Product Detail -->
     <div id="detail-screen" class="screen screen-hidden">
       <div class="detail-header-float">
         <i class="fa-solid fa-chevron-left back-btn" id="back-btn"></i>
@@ -99,14 +101,13 @@
       </div>
     </div>
 
-    <!-- Screen 3: Cart Overlay / Success (Frame 3) -->
+    <!-- Screen 3: Cart -->
     <div id="cart-screen" class="screen screen-hidden">
       <div class="cart-header">
         <i class="fa-solid fa-xmark close-cart" id="close-cart"></i>
         <h3>My Cart</h3>
       </div>
       <div class="cart-items" id="cart-items-list">
-        <!-- Cart items items here -->
         <div class="empty-msg">Your cart is empty</div>
       </div>
       <div class="cart-footer">
@@ -118,7 +119,7 @@
       </div>
     </div>
 
-    <!-- Screen 4: Success Message (Frame 4) -->
+    <!-- Screen 4: Success -->
     <div id="success-screen" class="screen screen-hidden">
       <div class="success-content">
         <div class="check-icon">
@@ -127,6 +128,58 @@
         <h1>Order Placed!</h1>
         <p>Your minimalist look is on its way.</p>
         <button class="btn btn-primary btn-large" id="return-home-btn">Continue Shopping</button>
+      </div>
+    </div>
+
+    <!-- Screen 5: Favorites -->
+    <div id="favorites-screen" class="screen screen-hidden">
+      <div class="cart-header">
+        <i class="fa-solid fa-xmark close-cart" id="close-fav"></i>
+        <h3>My Favorites</h3>
+      </div>
+      <div class="cart-items" id="fav-items-list">
+        <div class="empty-msg">No favorites yet — tap ♡ on any product!</div>
+      </div>
+    </div>
+
+    <!-- Screen 6: Profile -->
+    <div id="profile-screen" class="screen screen-hidden">
+      <div class="profile-header">
+        <i class="fa-solid fa-xmark close-cart" id="close-profile"></i>
+        <h3>My Profile</h3>
+      </div>
+      <div class="profile-content">
+        <div class="profile-avatar">
+          <img src="https://i.pravatar.cc/150?img=47" alt="Profile Avatar">
+        </div>
+        <h2 class="profile-name">Hemanth Kumar</h2>
+        <p class="profile-email">hemanth.kumar@luxeshop.com</p>
+        <div class="profile-stats">
+          <div class="stat-box">
+            <span class="stat-num">12</span>
+            <span class="stat-label">Orders</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num" id="profile-fav-count">0</span>
+            <span class="stat-label">Favorites</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Reviews</span>
+          </div>
+        </div>
+        <div class="profile-menu">
+          <div class="profile-menu-item"><i class="fa-solid fa-box"></i><span>My Orders</span><i
+              class="fa-solid fa-chevron-right"></i></div>
+          <div class="profile-menu-item"><i class="fa-solid fa-map-pin"></i><span>Addresses</span><i
+              class="fa-solid fa-chevron-right"></i></div>
+          <div class="profile-menu-item"><i class="fa-solid fa-credit-card"></i><span>Payment Methods</span><i
+              class="fa-solid fa-chevron-right"></i></div>
+          <div class="profile-menu-item"><i class="fa-solid fa-bell"></i><span>Notifications</span><i
+              class="fa-solid fa-chevron-right"></i></div>
+          <div class="profile-menu-item"><i class="fa-solid fa-gear"></i><span>Settings</span><i
+              class="fa-solid fa-chevron-right"></i></div>
+        </div>
       </div>
     </div>
   </div>
