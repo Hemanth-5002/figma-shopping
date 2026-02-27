@@ -88,25 +88,7 @@ body {
   z-index: 50;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
-
-/* Top-left tagline visible on mobile and laptop */
-.tagline {
-  position: absolute;
-  left: 24px;
-  top: 8px;
-  font-size: 12px;
-  color: var(--text-secondary);
-  z-index: 60;
-  font-weight: 700;
-}
-
-@media (min-width: 601px) {
-  .tagline {
-    left: 32px;
-    top: 12px;
-    font-size: 14px;
-  }
-}
+ 
 
 .top-bar {
   display: flex;
