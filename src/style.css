@@ -28,30 +28,35 @@ body {
 }
 
 #app {
-  width: 100%;
-  min-height: 100vh;
+  width: 390px;
+  height: 844px;
   background-color: var(--bg-color);
   position: relative;
-  display: flex;
-  flex-direction: column;
+  overflow: hidden;
+  border-radius: 40px;
+  box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.25);
+  border: 8px solid #1a1a1a;
 }
 
-/* Adjustments for wider screens (laptop/desktop) */
-@media (min-width: 1024px) {
+@media (max-width: 600px) {
   #app {
-    padding: 0 5%;
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+    border: none;
   }
 }
 
 .screen {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   transition: var(--transition);
   background: var(--bg-color);
-  position: relative;
-  /* Changed from absolute to allow natural flow */
 }
 
 .screen-hidden {
@@ -116,18 +121,17 @@ body {
 
 /* Hero Banner */
 .hero-banner {
-  background: var(--primary-gradient);
-  color: white;
+  background: #f4f4f5;
+  color: #121212;
   border-radius: var(--border-radius);
   padding: 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 24px;
-  min-height: 160px;
+  min-height: 180px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 @media (min-width: 1024px) {
@@ -142,46 +146,50 @@ body {
 }
 
 .hero-content h2 {
-  font-size: 20px;
+  font-size: 24px;
   margin-bottom: 6px;
   font-weight: 800;
+  max-width: 60%;
 }
 
 .hero-content p {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   margin-bottom: 16px;
+  max-width: 55%;
 }
 
 .btn {
   border: none;
   cursor: pointer;
-  border-radius: 12px;
+  border-radius: 16px;
   font-weight: 600;
   transition: var(--transition);
 }
 
 .btn-dark {
-  background: white;
-  color: black;
-  padding: 10px 20px;
+  background: black;
+  color: white;
+  padding: 12px 24px;
   font-size: 13px;
-  border-radius: 14px;
+  border-radius: 20px;
 }
 
 .hero-banner img {
   position: absolute;
-  right: -20px;
+  right: -30px;
   top: 10px;
-  height: 120%;
-  transform: rotate(-5deg);
+  height: 140%;
+  border-radius: 20px;
+  transform: rotate(-8deg);
+  object-fit: cover;
 }
 
 .categories {
   display: flex;
   gap: 12px;
   overflow-x: auto;
-  padding-bottom: 4px;
+  padding-bottom: 24px;
 }
 
 .categories::-webkit-scrollbar {
@@ -189,10 +197,11 @@ body {
 }
 
 .cat-pill {
-  padding: 8px 20px;
-  border-radius: 20px;
-  border: 1px solid #eee;
-  background: white;
+  padding: 10px 24px;
+  border-radius: 24px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
   white-space: nowrap;
   font-size: 14px;
   font-weight: 600;
@@ -202,38 +211,43 @@ body {
 .cat-pill.active {
   background: black;
   color: white;
-  border-color: black;
 }
 
 /* Product Grid */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
-  padding: 24px;
-  width: 100%;
+  padding: 0 24px 100px;
+  overflow-y: auto;
 }
 
 .product-card {
-  background: white;
-  border-radius: 24px;
-  overflow: hidden;
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
   cursor: pointer;
   transition: var(--transition);
-  border: 1px solid #f0f0f0;
+  border: none;
 }
 
-.product-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  border-color: #eee;
+.product-card:hover .img-wrapper {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
 .img-wrapper {
-  background: #f7f7f7;
-  padding: 20px;
+  background: #f4f4f5;
+  padding: 0;
+  height: 160px;
   position: relative;
   overflow: hidden;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
 }
 
 .badge {
@@ -250,24 +264,27 @@ body {
   z-index: 5;
 }
 
-.product-card img {
+.img-wrapper img {
   width: 100%;
-  aspect-ratio: 1;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
 }
 
 .product-info {
-  padding: 12px;
+  padding: 0 4px;
 }
 
 .product-info h3 {
   font-size: 14px;
   margin-bottom: 4px;
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .product-info span {
   font-size: 16px;
   font-weight: 800;
+  color: var(--text-primary);
 }
 
 /* Detail Screen */
