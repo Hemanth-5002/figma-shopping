@@ -89,6 +89,25 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+/* Top-left tagline visible on mobile and laptop */
+.tagline {
+  position: absolute;
+  left: 24px;
+  top: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  z-index: 60;
+  font-weight: 700;
+}
+
+@media (min-width: 601px) {
+  .tagline {
+    left: 32px;
+    top: 12px;
+    font-size: 14px;
+  }
+}
+
 .top-bar {
   display: flex;
   justify-content: space-between;
@@ -159,6 +178,11 @@ body {
   }
 }
 
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
 .hero-content h2 {
   font-size: 24px;
   margin-bottom: 6px;
@@ -191,12 +215,26 @@ body {
 
 .hero-banner img {
   position: absolute;
-  right: -30px;
-  top: 10px;
-  height: 140%;
+  right: -20px;
+  top: -10px;
+  height: 130%;
+  width: 45%;
   border-radius: 20px;
   transform: rotate(-8deg);
   object-fit: cover;
+  z-index: 1;
+}
+
+/* Mobile: keep image from overflowing on small screens */
+@media (max-width: 600px) {
+  .hero-banner img {
+    height: 110%;
+    right: -10px;
+  }
+
+  .hero-content h2 {
+    font-size: 20px;
+  }
 }
 
 .categories {
