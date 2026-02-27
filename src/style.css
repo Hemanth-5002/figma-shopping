@@ -694,12 +694,17 @@ body {
   overflow-y: auto;
 }
 
-.profile-avatar img {
+.avatar-placeholder {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  object-fit: cover;
+  background: #f4f4f5;
   border: 3px solid #7c4dff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  color: #ccc;
   margin-bottom: 8px;
 }
 
