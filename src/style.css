@@ -149,7 +149,7 @@ body {
   position: relative;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 601px) {
   .hero-banner {
     min-height: 250px;
     padding: 40px;
@@ -157,6 +157,13 @@ body {
 
   .hero-content h2 {
     font-size: 32px;
+  }
+
+  .hero-banner img {
+    height: 180%;
+    width: auto;
+    right: 5%;
+    top: -40%;
   }
 }
 
