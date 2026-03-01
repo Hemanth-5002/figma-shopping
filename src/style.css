@@ -88,7 +88,7 @@ body {
   z-index: 50;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
- 
+
 
 .top-bar {
   display: flex;
@@ -325,21 +325,25 @@ body {
 @media (min-width: 601px) {
   .product-grid {
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    padding: 0 32px 80px;
+    gap: 24px;
+    padding: 0 40px 80px;
   }
 
   .img-wrapper {
-    height: 120px;
-    border-radius: 14px;
+    height: 320px;
+    border-radius: 20px;
+  }
+
+  .img-wrapper img {
+    object-fit: cover;
   }
 
   .product-info h3 {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .product-info span {
-    font-size: 13px;
+    font-size: 18px;
   }
 }
 
