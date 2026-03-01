@@ -160,10 +160,10 @@ body {
   }
 
   .hero-banner img {
-    height: 180%;
+    height: 130%;
     width: auto;
     right: 5%;
-    top: -40%;
+    top: -15%;
   }
 }
 
